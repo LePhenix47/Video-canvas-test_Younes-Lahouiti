@@ -8,17 +8,17 @@
         justify-content: space-between;
         align-items: center;
 
+        flex-wrap: wrap;
+
         padding: 20px;
     }
 
     &__canvas {
-        outline: 2px solid red;
+        border-radius: 20px;
 
         scale: -100% 100%; //we reverse the video horizontally
     }
 
-    &__video {
-        outline: 2px solid blue;
-    }
+    &__video {}
 
 }

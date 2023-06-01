@@ -5,7 +5,7 @@ import { log } from "./console.functions";
  * @param {HTMLVideoElement} video - The HTML video element to be played
  */
 export function playVideo(video: HTMLVideoElement): void {
-  video?.play();
+  video.play();
 }
 
 /**
@@ -13,7 +13,7 @@ export function playVideo(video: HTMLVideoElement): void {
  * @param {HTMLVideoElement} video - The HTML video element to be paused
  */
 export function pauseVideo(video: HTMLVideoElement): void {
-  video?.pause();
+  video.pause();
 }
 
 /**
@@ -49,7 +49,7 @@ export function setTimestampVideo(video: HTMLVideoElement, time: number): void {
  * @returns {number} The current time of the video element (in seconds)
  */
 export function getVideoCurrentTime(video: HTMLVideoElement): number {
-  return video?.currentTime;
+  return video.currentTime;
 }
 
 /**
@@ -59,7 +59,7 @@ export function getVideoCurrentTime(video: HTMLVideoElement): number {
  * @returns {number} The duration of the video file in seconds (returns 0 if it's not available)
  */
 export function getVideoTotalTime(video: HTMLVideoElement): number {
-  return isNaN(video?.duration) ? 0 : video?.duration;
+  return isNaN(video.duration) ? 0 : video.duration;
 }
 
 /**
@@ -68,7 +68,7 @@ export function getVideoTotalTime(video: HTMLVideoElement): number {
  * @returns Boolean value telling whether or not the video is paused
  */
 export function checkIfVideoPaused(video: HTMLVideoElement): boolean {
-  return video?.paused;
+  return video.paused;
 }
 
 /**
@@ -77,7 +77,7 @@ export function checkIfVideoPaused(video: HTMLVideoElement): boolean {
  * @returns Boolean value telling whether or not the video has ended
  */
 export function checkIfVideoEnded(video: HTMLVideoElement): boolean {
-  return video?.ended;
+  return video.ended;
 }
 
 /**
@@ -109,7 +109,7 @@ export function formatTimeValues(seconds: number): {
   //Format the hours
   const formattedHours: string = unformattedHours.toString();
 
-  // Check if the time is over an hour and under 10 minutes
+  // Check if the time's hour is over an hour and has minutes under 10 minutes
   const isOverAnHour: boolean = unformattedHours > 0;
   const isUnderTenMinutes: boolean = unformattedMinutes < 10;
 

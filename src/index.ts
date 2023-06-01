@@ -15,7 +15,7 @@ import {
   setCanvasSize,
 } from "./utils/functions/helper-functions/canvas.functions";
 import { playVideo } from "./utils/functions/helper-functions/video.functions";
-import { Effect } from "./utils/classes/effects/effect.class";
+import { WebCamEffect } from "./utils/classes/effects/effect.class";
 
 /**
  * Logs "Hello world!" to the console.
@@ -88,9 +88,9 @@ function animate() {
 
 /**
  * The effect handler.
- * @type {Effect}
+ * @type {WebCamEffect}
  */
-let effectHandler: Effect = new Effect(canvas, video);
+let effectHandler: WebCamEffect = new WebCamEffect(canvas, video);
 
 /**
  * Draws the image on the canvas using the effect handler.
