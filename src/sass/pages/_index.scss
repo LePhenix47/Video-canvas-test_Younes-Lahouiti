@@ -1,3 +1,22 @@
 @use "../utils/" as *;
 
-.index {}
+.index {
+    outline: 2px solid grey;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 20px;
+    }
+
+    &__canvas {
+        outline: 2px solid red;
+    }
+
+    &__video {
+        outline: 2px solid blue;
+    }
+
+}
