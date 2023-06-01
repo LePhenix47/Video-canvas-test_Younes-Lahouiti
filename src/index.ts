@@ -5,8 +5,16 @@ import {
 
 //Web components
 import "./components/web-component.component";
-import { selectQuery } from "./utils/functions/helper-functions/dom.functions";
-import { get2DContext } from "./utils/functions/helper-functions/canvas.functions";
+import {
+  addClass,
+  selectQuery,
+} from "./utils/functions/helper-functions/dom.functions";
+import {
+  clearOldPaint,
+  get2DContext,
+  setCanvasSize,
+} from "./utils/functions/helper-functions/canvas.functions";
+import { playVideo } from "./utils/functions/helper-functions/video.functions";
 
 log("Hello world!");
 
@@ -21,9 +29,31 @@ async function setVideoToCanvas() {
       await navigator.mediaDevices.getUserMedia({ video: true });
 
     video.srcObject = rawWebcamData;
-    video.play();
+    playVideo(video);
+
+    video.addEventListener("loadeddata", startAnimationOnCanvas);
   } catch (videoError) {
     error({ videoError });
   } finally {
   }
+}
+setVideoToCanvas();
+
+function startAnimationOnCanvas(event: Event) {
+  setCanvasSize(canvas, video.clientWidth, video.clientHeight);
+
+  addClass(video, "hide");
+
+  animate();
+}
+
+function animate() {
+  //   clearOldPaint(context, canvas.width, canvas.height);
+  drawImageOnCanvas();
+
+  requestAnimationFrame(animate);
+}
+
+function drawImageOnCanvas() {
+  context.drawImage(video, 0, 0);
 }
