@@ -59,7 +59,7 @@ export function getVideoCurrentTime(video: HTMLVideoElement): number {
  * @returns {number} The duration of the video file in seconds (returns 0 if it's not available)
  */
 export function getVideoTotalTime(video: HTMLVideoElement): number {
-  return isNaN(video.duration) ? 0 : video.duration;
+  return isNaN(video.duration) ? -1 : video.duration;
 }
 
 /**
