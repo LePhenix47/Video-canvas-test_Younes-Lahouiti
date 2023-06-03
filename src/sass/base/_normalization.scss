@@ -299,27 +299,32 @@ input {
         }
 
         background-color: transparent;
-        --_color-swatch-display: inline-block;
+        border: transparent;
+        outline: 2px solid currentColor;
 
-        --_color-swatch-height: 100%;
+        padding: 0px;
 
-        --_color-swatch-border-width: 1px;
-        --_color-swatch-border-color: currentColor;
+        --color-swatch-display: inline-block;
+
+        --color-swatch-height: 100%;
+
+        --color-swatch-border-width: 0px;
+        --color-swatch-border-color: transparent;
 
         &::-moz-color-swatch {
-            display: var(--_color-swatch-display);
+            display: var(--color-swatch-display);
 
-            height: var(--_color-swatch-height);
+            height: var(--color-swatch-height);
 
-            border: var(--_color-swatch-border-width) solid var(--_color-swatch-border-color);
+            border: var(--color-swatch-border-width) solid var(--color-swatch-border-color);
         }
 
         &::-webkit-color-swatch {
-            display: var(--_color-swatch-display);
+            display: var(--color-swatch-display);
 
-            height: var(--_color-swatch-height);
+            height: var(--color-swatch-height);
 
-            border: var(--_color-swatch-border-width) solid var(--_color-swatch-border-color);
+            border: var(--color-swatch-border-width) solid var(--color-swatch-border-color);
         }
     }
 
@@ -373,77 +378,80 @@ input {
             cursor: grabbing;
         }
 
-        border-radius: var(--_thumb-border-radius);
+        border-radius: var(--thumb-border-radius);
         //Track
-        --_track-width: 160px;
-        --_track-height: 20px;
+        --track-width: 160px;
+        --track-height: 20px;
 
-        --_track-bg: #e9e9ed;
+        --track-appearance: none;
 
-        --_track-appearance: none;
+        --track-bg: #e9e9ed;
+        --track-bg-image: none;
 
-        background-color: var(--_track-bg);
-        appearance: var(--_track-appearance);
+        background-color: var(--track-bg);
+        background-image: var(--track-bg-image);
+
+        appearance: var(--track-appearance);
         overflow: hidden;
 
         &::-webkit-slider-runnable-track {
-            background-color: var(--_track-bg);
+            background-color: var(--track-bg);
 
-            width: var(--_track-width);
-            height: var(--_track-bg);
+            width: var(--track-width);
+            height: var(--track-bg);
         }
 
         &::-moz-range-track {
-            background-color: var(--_track-bg);
+            background-color: var(--track-bg);
 
-            width: var(--_track-width);
-            height: var(--_track-bg);
+            width: var(--track-width);
+            height: var(--track-bg);
         }
 
         //Thumb
-        --_thumb-appearance: none;
+        --thumb-appearance: none;
 
-        --_thumb-bg: #484851;
+        --thumb-bg: #484851;
 
-        --_thumb-border-color: white;
-        --_thumb-border-width: 0px;
-        --_thumb-border-radius: 100vmax;
+        --thumb-border-color: white;
+        --thumb-border-width: 2px;
+        --thumb-border-radius: 100vmax;
 
-        --_thumb-width: 15px;
-        --_thumb-height: 15px;
+        --thumb-width: 15px;
+        --thumb-height: 15px;
 
-        --_inner-track-size: calc(var(--_track-width));
-        --_inner-track-offset: calc(-1 * var(--_track-width) - var(--_thumb-width) / 2); //We add a box shadow to the left
-        --_inner-track-bg: #2374ff;
+        --inner-track-size: calc(var(--track-width));
+        --inner-track-offset: calc(-1 * var(--track-width) - var(--thumb-width) / 2); //We add a box shadow to the left
+        --inner-track-bg: #2374ff;
 
         &::-webkit-slider-thumb {
-            appearance: var(--_thumb-appearance);
-            -webkit-appearance: var(--_thumb-appearance);
+            appearance: var(--thumb-appearance);
+            -webkit-appearance: var(--thumb-appearance);
 
-            background-color: var(--_thumb-bg);
-            color: var(--_thumb-bg);
+            background-color: var(--thumb-bg);
+            color: var(--thumb-bg);
 
-            border: var(--_thumb-border-width) solid var(--_thumb-border-color);
-            border-radius: var(--_thumb-border-radius);
+            border: var(--thumb-border-width) solid var(--thumb-border-color);
+            border-radius: var(--thumb-border-radius);
 
-            width: var(--_thumb-width);
-            height: var(--_thumb-height);
+            width: var(--thumb-width);
+            height: var(--thumb-height);
 
-            box-shadow: var(--_inner-track-offset) 0 0 var(--_inner-track-size) var(--_inner-track-bg);
+            box-shadow: var(--inner-track-offset) 0 0 var(--inner-track-size) var(--inner-track-bg);
         }
 
         &::-moz-range-thumb {
-            appearance: var(--_thumb-appearance) !important;
+            appearance: var(--thumb-appearance) !important;
 
-            background-color: var(--_thumb-bg);
+            background-color: var(--thumb-bg);
 
-            border: var(--_thumb-border-width) solid var(--_thumb-border-color);
-            border-radius: var(--_thumb-border-radius);
+            border: var(--thumb-border-width) solid var(--thumb-border-color);
+            border-radius: var(--thumb-border-radius);
 
-            width: var(--_thumb-width);
-            height: var(--_thumb-height);
+            width: var(--thumb-width);
+            height: var(--thumb-height);
 
-            box-shadow: var(--_inner-track-offset) 0 0 var(--_inner-track-size) var(--_inner-track-bg);
+            box-shadow: var(--inner-track-offset) 0 0 var(--inner-track-size) var(--inner-track-bg);
         }
     }
 }

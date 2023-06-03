@@ -4,8 +4,8 @@ import {
   timeEnd,
 } from "../../functions/helper-functions/console.functions";
 import { floor } from "../../functions/helper-functions/math.functions";
+import { ColorType } from "../../variables/tracker.variables";
 
-type ColorType = { red: number; green: number; blue: number };
 /**
  * Represents an image effect applied to a canvas.
  */
@@ -46,7 +46,6 @@ export class WebCamEffect {
     this.context = get2DContext(this.canvas, { willReadFrequently: true });
 
     this.video = video;
-    this.hue = 0;
   }
 
   /**
@@ -60,8 +59,6 @@ export class WebCamEffect {
       this.canvas.width,
       this.canvas.height
     );
-
-    this.analyzeImage();
   }
 
   /**
@@ -69,12 +66,13 @@ export class WebCamEffect {
    * @private
    *  @returns {void}
    */
-  private analyzeImage(): void {
-    const colorToReplace: ColorType = {
+  analyzeImage(
+    colorToReplace: ColorType = {
       red: 0,
       green: 0,
       blue: 255,
-    };
+    }
+  ): void {
     for (let i = 0; i < this.pixelsData.data.length; i += 4) {
       const pixelIndex: number = i / 4;
 
@@ -101,7 +99,7 @@ export class WebCamEffect {
   }
 
   /**
-   * Checks if the squared distance between two colors is below a specified threshold.
+   * Checks if the squared Euclidean distance between two colors is below a specified threshold.
    *
    * @param {{red:number;green:number;blue:number;}} firstColor - The first color object with `red`, `green`, and `blue` properties.
    * @param {{red:number;green:number;blue:number;}} secondColor - The second color object with `red`, `green`, and `blue` properties.

@@ -112,3 +112,12 @@
 @mixin child-border-radius-simple($parent-radius, $child-gap) {
     border-radius: calc(#{$parent-radius} - #{$child-gap});
 }
+
+//Element specific mixins:
+
+//
+@mixin set-input-color($color) {
+    --track-bg-image: linear-gradient(90deg, rgb(0, 0, 0), #{$color}) !important;
+    --track-bg: none !important;
+    --inner-track-bg: none !important;
+}

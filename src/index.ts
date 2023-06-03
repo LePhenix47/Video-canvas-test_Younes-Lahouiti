@@ -8,6 +8,7 @@ import "./components/web-component.component";
 import {
   addClass,
   selectQuery,
+  selectQueryAll,
 } from "./utils/functions/helper-functions/dom.functions";
 import {
   clearOldPaint,
@@ -16,6 +17,8 @@ import {
 } from "./utils/functions/helper-functions/canvas.functions";
 import { playVideo } from "./utils/functions/helper-functions/video.functions";
 import { WebCamEffect } from "./utils/classes/effects/effect.class";
+import { handleColorRangeChange } from "./utils/functions/event-listeners/event-listeners.functions";
+import { colorToReplace } from "./utils/variables/tracker.variables";
 
 /**
  * The canvas element.
@@ -28,6 +31,17 @@ const canvas: HTMLCanvasElement = selectQuery("canvas") as HTMLCanvasElement;
 //   log("resize");
 //   setCanvasSize(canvas, video.clientWidth, video.clientHeight);
 // }
+
+function addInputsEventListeners() {
+  const inputRangeArray: HTMLInputElement[] = selectQueryAll(
+    "input[type=range]"
+  ) as HTMLInputElement[];
+
+  for (const input of inputRangeArray) {
+    input.addEventListener("input", handleColorRangeChange);
+  }
+}
+addInputsEventListeners();
 
 /**
  * The video element.
@@ -53,8 +67,16 @@ async function setVideoToCanvas(): Promise<void> {
     playVideo(video);
 
     video.addEventListener("loadeddata", startAnimationOnCanvas);
+
+    const notAllowedDiv: HTMLDivElement = selectQuery(
+      ".index__not-allowed-icon"
+    ) as HTMLDivElement;
+
+    addClass(notAllowedDiv, "hide");
   } catch (videoError) {
     error(videoError);
+
+    addClass(video, "hide");
   }
 }
 
@@ -66,9 +88,7 @@ setVideoToCanvas();
  */
 function startAnimationOnCanvas(event: Event) {
   setCanvasSize(canvas, video.clientWidth, video.clientHeight);
-
   addClass(video, "hide");
-
   animate();
 }
 
@@ -92,4 +112,5 @@ let effectHandler: WebCamEffect = new WebCamEffect(canvas, video);
  */
 function changePixelsOnVideo() {
   effectHandler.drawImageOnCanvas();
+  effectHandler.analyzeImage(colorToReplace);
 }

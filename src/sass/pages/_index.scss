@@ -3,6 +3,9 @@
 .index {
     outline: 2px solid grey;
 
+    @include center-flex-column(25px);
+    padding-block: 25px;
+
     &__container {
         @include center-flex;
 
@@ -15,11 +18,59 @@
         border-radius: 20px;
 
         scale: -100% 100%; //we reverse the video horizontally
+
+        background-color: grey;
     }
 
     &__video {
         border-radius: 20px;
 
         scale: -100% 100%; //we reverse the video horizontally}
+    }
+
+    &__webcam-container {
+        position: relative;
+
+        @include center-flex-column;
+    }
+
+    &__controls {}
+
+    &__not-allowed-icon {
+        @include center-flex-column(15px);
+
+        position: absolute;
+    }
+
+
+    &__control--to-replace {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+
+        width: fit-content;
+        margin: auto;
+    }
+
+    &__label {
+        width: max-content;
+    }
+
+    &__input {
+        margin-top: 10px;
+        width: 255px;
+
+        &--red {
+            @include set-input-color(rgb(255, 0, 0))
+        }
+
+        &--green {
+            @include set-input-color(rgb(0, 255, 0))
+        }
+
+        &--blue {
+            @include set-input-color(rgb(0, 0, 255))
+        }
     }
 }
