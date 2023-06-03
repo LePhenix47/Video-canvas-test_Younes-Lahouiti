@@ -3,6 +3,7 @@ import {
   time,
   timeEnd,
 } from "../../functions/helper-functions/console.functions";
+import { floor } from "../../functions/helper-functions/math.functions";
 
 /**
  * Represents an image effect applied to a canvas.
@@ -31,6 +32,7 @@ export class WebCamEffect {
    * @type {ImageData}
    */
   pixelsData: ImageData;
+  hue: number;
 
   /**
    * Creates an instance of the Effect class.
@@ -43,6 +45,7 @@ export class WebCamEffect {
     this.context = get2DContext(this.canvas, { willReadFrequently: true });
 
     this.video = video;
+    this.hue = 0;
   }
 
   /**
@@ -57,33 +60,30 @@ export class WebCamEffect {
       this.canvas.height
     );
 
-    this.convertToPixels();
+    this.analyzeImage();
   }
 
   /**
    * Converts the canvas image to pixels.
    * @private
-   * @param {number} [cellSize=1] - The size of the pixel cells.
    *  @returns {void}
    */
-  private convertToPixels(cellSize: number = 1): void {
-    for (let y = 0; y < this.pixelsData.height; y += cellSize) {
-      for (let x = 0; x < this.pixelsData.width; x += cellSize) {
-        const pixelPosX: number = x * 4;
-        const pixelPosY: number = y * 4;
-        const pixelIndex: number =
-          pixelPosX + pixelPosY * this.pixelsData.width;
+  private analyzeImage(): void {
+    for (let i = 0; i < this.pixelsData.data.length; i += 4) {
+      const pixelIndex: number = i / 4;
 
-        // Accessing pixel values
-        const red: number = this.pixelsData.data[pixelIndex + 0];
-        const green: number = this.pixelsData.data[pixelIndex + 1];
-        const blue: number = this.pixelsData.data[pixelIndex + 2];
-        const alpha: number = this.pixelsData.data[pixelIndex + 3];
+      const posX: number = pixelIndex % this.pixelsData.width;
+      const posY: number = floor(pixelIndex / this.pixelsData.width);
 
-        const currentTotalColor: number = red + green + blue;
-        //We get an approximate value of the brightness of the pixel
-        const averageColorBrightness: number = currentTotalColor / 3;
-        const color: string = `rgb(${red}, ${green}, ${blue})`;
+      const red: number = this.pixelsData.data[i + 0];
+      const green: number = this.pixelsData.data[i + 1];
+      const blue: number = this.pixelsData.data[i + 2];
+      const alpha: number = this.pixelsData.data[i + 3];
+
+      const hasCondition: boolean = red < 64 && green < 64 && blue < 64;
+      if (hasCondition) {
+        this.context.fillStyle = "white";
+        this.context.fillRect(posX, posY, 2, 2);
       }
     }
   }
