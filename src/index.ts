@@ -18,21 +18,16 @@ import { playVideo } from "./utils/functions/helper-functions/video.functions";
 import { WebCamEffect } from "./utils/classes/effects/effect.class";
 
 /**
- * Logs "Hello world!" to the console.
- */
-log("Hello world!");
-
-/**
  * The canvas element.
  * @type {HTMLCanvasElement}
  */
 const canvas: HTMLCanvasElement = selectQuery("canvas") as HTMLCanvasElement;
 
-/**
- * The 2D rendering context of the canvas.
- * @type {CanvasRenderingContext2D}
- */
-// const context: CanvasRenderingContext2D = get2DContext(canvas);
+// window.addEventListener("resize", resizeCanvas);
+// function resizeCanvas() {
+//   log("resize");
+//   setCanvasSize(canvas, video.clientWidth, video.clientHeight);
+// }
 
 /**
  * The video element.
@@ -81,7 +76,7 @@ function startAnimationOnCanvas(event: Event) {
  * Animates the canvas.
  */
 function animate() {
-  drawImageOnCanvas();
+  changePixelsOnVideo();
 
   requestAnimationFrame(animate);
 }
@@ -95,6 +90,6 @@ let effectHandler: WebCamEffect = new WebCamEffect(canvas, video);
 /**
  * Draws the image on the canvas using the effect handler.
  */
-function drawImageOnCanvas() {
+function changePixelsOnVideo() {
   effectHandler.drawImageOnCanvas();
 }

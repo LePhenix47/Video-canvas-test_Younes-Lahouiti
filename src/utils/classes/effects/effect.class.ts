@@ -5,6 +5,7 @@ import {
 } from "../../functions/helper-functions/console.functions";
 import { floor } from "../../functions/helper-functions/math.functions";
 
+type ColorType = { red: number; green: number; blue: number };
 /**
  * Represents an image effect applied to a canvas.
  */
@@ -69,6 +70,11 @@ export class WebCamEffect {
    *  @returns {void}
    */
   private analyzeImage(): void {
+    const colorToReplace: ColorType = {
+      red: 0,
+      green: 0,
+      blue: 255,
+    };
     for (let i = 0; i < this.pixelsData.data.length; i += 4) {
       const pixelIndex: number = i / 4;
 
@@ -80,11 +86,42 @@ export class WebCamEffect {
       const blue: number = this.pixelsData.data[i + 2];
       const alpha: number = this.pixelsData.data[i + 3];
 
-      const hasCondition: boolean = red < 64 && green < 64 && blue < 64;
+      const currentColor: ColorType = { red, green, blue };
+
+      const hasCondition: boolean = this.checkColorMatch(
+        colorToReplace,
+        currentColor,
+        190
+      );
       if (hasCondition) {
-        this.context.fillStyle = "white";
+        this.context.fillStyle = "yellow";
         this.context.fillRect(posX, posY, 2, 2);
       }
     }
+  }
+
+  /**
+   * Checks if the squared distance between two colors is below a specified threshold.
+   *
+   * @param {{red:number;green:number;blue:number;}} firstColor - The first color object with `red`, `green`, and `blue` properties.
+   * @param {{red:number;green:number;blue:number;}} secondColor - The second color object with `red`, `green`, and `blue` properties.
+   * @param {number} [threshold=160] - The threshold value for the squared distance. Default is 160.
+   *
+   * @returns {boolean} - Returns true if the squared distance is below the threshold also squared, otherwise false.
+   */
+  private checkColorMatch(
+    firstColor: ColorType,
+    secondColor: ColorType,
+    threshold: number = 160
+  ): boolean {
+    const squaredDistance: number =
+      (firstColor.red - secondColor.red) ** 2 +
+      (firstColor.green - secondColor.green) ** 2 +
+      (firstColor.blue - secondColor.blue) ** 2;
+
+    threshold = threshold ** 2;
+
+    //For performance reasons we're not using the `Math.sqrt` method
+    return squaredDistance < threshold;
   }
 }

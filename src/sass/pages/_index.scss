@@ -4,9 +4,7 @@
     outline: 2px solid grey;
 
     &__container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include center-flex;
 
         flex-wrap: wrap;
 
@@ -19,6 +17,9 @@
         scale: -100% 100%; //we reverse the video horizontally
     }
 
-    &__video {}
+    &__video {
+        border-radius: 20px;
 
+        scale: -100% 100%; //we reverse the video horizontally}
+    }
 }
