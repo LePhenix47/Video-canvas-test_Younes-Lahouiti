@@ -1,4 +1,5 @@
 import {
+  debug,
   error,
   log,
 } from "./utils/functions/helper-functions/console.functions";
@@ -17,7 +18,10 @@ import {
 } from "./utils/functions/helper-functions/canvas.functions";
 import { playVideo } from "./utils/functions/helper-functions/video.functions";
 import { WebCamEffect } from "./utils/classes/effects/effect.class";
-import { handleColorRangeChange } from "./utils/functions/event-listeners/event-listeners.functions";
+import {
+  handleColorInput,
+  handleColorRangeChange,
+} from "./utils/functions/event-listeners/event-listeners.functions";
 import { colorToReplace } from "./utils/variables/tracker.variables";
 
 /**
@@ -32,7 +36,7 @@ const canvas: HTMLCanvasElement = selectQuery("canvas") as HTMLCanvasElement;
 //   setCanvasSize(canvas, video.clientWidth, video.clientHeight);
 // }
 
-function addInputsEventListeners() {
+function addReplacedColorsEventListeners() {
   const inputRangeArray: HTMLInputElement[] = selectQueryAll(
     "input[type=range]"
   ) as HTMLInputElement[];
@@ -41,7 +45,16 @@ function addInputsEventListeners() {
     input.addEventListener("input", handleColorRangeChange);
   }
 }
-addInputsEventListeners();
+addReplacedColorsEventListeners();
+
+function addReplacerColorEventListeners() {
+  const colorInput: HTMLInputElement = selectQuery(
+    "input[type=color]"
+  ) as HTMLInputElement;
+
+  colorInput.addEventListener("input", handleColorInput);
+}
+addReplacerColorEventListeners();
 
 /**
  * The video element.
@@ -65,7 +78,6 @@ async function setVideoToCanvas(): Promise<void> {
 
     video.srcObject = rawWebcamData;
     playVideo(video);
-
     video.addEventListener("loadeddata", startAnimationOnCanvas);
 
     const notAllowedDiv: HTMLDivElement = selectQuery(

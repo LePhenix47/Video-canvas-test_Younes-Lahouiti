@@ -61,6 +61,21 @@ export function getVideoCurrentTime(video: HTMLVideoElement): number {
 export function getVideoTotalTime(video: HTMLVideoElement): number {
   return isNaN(video.duration) ? -1 : video.duration;
 }
+/**
+ * Sets the playback speed of a video element.
+ *
+ * @param {HTMLVideoElement} video - The video element.
+ * @param {number} newPlaybackRate - The new playback rate to set for the video.
+ *   A value of 1.0 represents normal speed. Values less than 1.0 slow down the playback,
+ *   while values greater than 1.0 speed it up.
+ * @returns {void}
+ */
+export function setVideoSpeed(
+  video: HTMLVideoElement,
+  newPlaybackRate: number
+): void {
+  video.playbackRate = newPlaybackRate;
+}
 
 /**
  * Checks if a video element has paused

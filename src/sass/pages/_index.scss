@@ -25,7 +25,7 @@
     &__video {
         border-radius: 20px;
 
-        scale: -100% 100%; //we reverse the video horizontally}
+        scale: -100% 100%; //we reverse the video horizontally
     }
 
     &__webcam-container {
@@ -34,7 +34,13 @@
         @include center-flex-column;
     }
 
-    &__controls {}
+    &__controls {
+        @include center-flex(25px);
+
+        @include mobile-only {
+            @include center-flex-column(25px);
+        }
+    }
 
     &__not-allowed-icon {
         @include center-flex-column(15px);
@@ -43,13 +49,21 @@
     }
 
 
-    &__control--to-replace {
+    &__control--fieldset {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 35px;
 
         width: fit-content;
+        margin: auto;
+    }
+
+    &__control--legend {
+        font-size: 24px;
+        font-weight: bold;
+
+        text-align: center;
         margin: auto;
     }
 

@@ -4,3 +4,5 @@ export const colorToReplace: ColorType = {
   green: 0,
   blue: 255,
 };
+
+export const replacerColor: string = "#FFFF00";
