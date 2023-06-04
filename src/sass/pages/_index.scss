@@ -88,6 +88,8 @@
         width: max-content;
 
         &--euclidian-distance {
+            position: relative;
+
             &:hover>.popup__text {
                 visibility: visible;
             }
@@ -116,7 +118,7 @@
             padding: 2px 4px;
 
             text-align: center;
-            position: relative;
+
         }
     }
 }
@@ -125,14 +127,23 @@
 .popup {
 
     &__text {
-        visibility: collapse;
-        position: absolute;
+        --_bg-color: #CCC;
+        background-color: var(--_bg-color);
 
-
-        width: 200px;
-
-        background-color: #333;
         color: currentColor;
+
+        visibility: collapse;
+
+        position: absolute;
+        top: -50%;
+        left: 105%;
+        translate: 0% -5%;
+
+        width: 300px;
+
+        @include mobile-only {
+            width: 200px;
+        }
 
         text-align: justify;
 

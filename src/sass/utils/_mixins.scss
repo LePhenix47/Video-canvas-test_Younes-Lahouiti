@@ -117,7 +117,7 @@
 
 //
 @mixin set-input-color($color) {
-    --track-bg-image: linear-gradient(90deg, rgb(0, 0, 0), #{$color}) !important;
-    --track-bg: none !important;
-    --inner-track-bg: none !important;
+    --_track-bg-image: linear-gradient(90deg, rgb(0, 0, 0), #{$color}) !important;
+    --_track-bg: none !important;
+    --_inner-track-bg: none !important;
 }

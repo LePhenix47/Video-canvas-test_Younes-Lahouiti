@@ -33,4 +33,11 @@
         --scrollbar-thumb-bg-color--active: #4f4f4f;
     }
 
+    .popup {
+
+        &__text {
+            --_bg-color: #333;
+        }
+    }
+
 }
