@@ -33,11 +33,8 @@
         --scrollbar-thumb-bg-color--active: #4f4f4f;
     }
 
-    .popup {
-
-        &__text {
-            --_bg-color: #333;
-        }
+    :is(.popup__text, .index__input--euclidian-distance) {
+        --_bg-color: #333;
     }
 
 }

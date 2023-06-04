@@ -21,6 +21,7 @@ import { WebCamEffect } from "./utils/classes/effects/effect.class";
 import {
   handleColorInput,
   handleColorRangeChange,
+  handleDistanceNumberInput,
 } from "./utils/functions/event-listeners/event-listeners.functions";
 import { colorToReplace } from "./utils/variables/tracker.variables";
 
@@ -44,6 +45,12 @@ function addReplacedColorsEventListeners() {
   for (const input of inputRangeArray) {
     input.addEventListener("input", handleColorRangeChange);
   }
+
+  const numberInput: HTMLInputElement = selectQuery(
+    ".index__input--euclidian-distance"
+  ) as HTMLInputElement;
+
+  numberInput.addEventListener("input", handleDistanceNumberInput);
 }
 addReplacedColorsEventListeners();
 

@@ -41,9 +41,18 @@ export function handleColorInput(event: Event) {
   replacerColor.hexValue = formattedValue;
 }
 
+export function handleDistanceNumberInput(event: Event) {
+  const input: HTMLInputElement = event.currentTarget as HTMLInputElement;
+
+  replacerColor.threshold = input.valueAsNumber;
+}
+
 function setInputValueToSpan(input: HTMLInputElement, value: number | string) {
   const label: HTMLLabelElement = getParent(input) as HTMLLabelElement;
-  const span: HTMLSpanElement = selectQuery("span", label) as HTMLSpanElement;
+  const span: HTMLSpanElement = selectQuery(
+    "span:not(.popup__text)",
+    label
+  ) as HTMLSpanElement;
 
   span.textContent = value.toString();
 }

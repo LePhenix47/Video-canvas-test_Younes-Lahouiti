@@ -44,14 +44,14 @@ html {
 body {
     min-height: 100vh;
 
-    background-color: var(--_bg-primary);
-    color: var(--_color-primary);
+    background-color: var(--bg-primary);
+    color: var(--color-primary);
 
 
     overflow-x: hidden;
 
     transition:
-        background-color 650ms ease-in-out,
+        background-color 450ms ease-in-out,
         color 350ms ease-in-out;
 
 }
