@@ -1,6 +1,13 @@
-import { colorToReplace } from "../../variables/tracker.variables";
+import {
+  colorToReplace,
+  replacerColor,
+} from "../../variables/tracker.variables";
 import { log } from "../helper-functions/console.functions";
-import { getParent, selectQuery } from "../helper-functions/dom.functions";
+import {
+  getParent,
+  selectQuery,
+  setStyleProperty,
+} from "../helper-functions/dom.functions";
 import { formatText } from "../helper-functions/string.functions";
 
 export function handleColorRangeChange(event: Event) {
@@ -11,6 +18,16 @@ export function handleColorRangeChange(event: Event) {
   setInputValueToSpan(input, input.valueAsNumber);
 
   colorToReplace[inputColor] = input.valueAsNumber;
+
+  const previewColorDiv: HTMLDivElement = selectQuery(
+    ".index__previewed-color"
+  ) as HTMLDivElement;
+
+  setStyleProperty(
+    "--_bg-color",
+    `rgb(${colorToReplace.red},${colorToReplace.green},${colorToReplace.blue})`,
+    previewColorDiv
+  );
 }
 
 export function handleColorInput(event: Event) {
@@ -20,6 +37,8 @@ export function handleColorInput(event: Event) {
   const formattedValue: string = formatText(input.value, "uppercase");
 
   setInputValueToSpan(input, formattedValue);
+
+  replacerColor.hexValue = formattedValue;
 }
 
 function setInputValueToSpan(input: HTMLInputElement, value: number | string) {

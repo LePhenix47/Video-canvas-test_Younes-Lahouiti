@@ -5,4 +5,8 @@ export const colorToReplace: ColorType = {
   blue: 255,
 };
 
-export const replacerColor: string = "#FFFF00";
+//We cannot change exported constant values, though we can change object properties
+export const replacerColor: { hexValue: string; threshold: number } = {
+  hexValue: "#FFFF00",
+  threshold: 190,
+};

@@ -66,8 +66,11 @@ export function getVideoTotalTime(video: HTMLVideoElement): number {
  *
  * @param {HTMLVideoElement} video - The video element.
  * @param {number} newPlaybackRate - The new playback rate to set for the video.
- *   A value of 1.0 represents normal speed. Values less than 1.0 slow down the playback,
- *   while values greater than 1.0 speed it up.
+ * A value of 1.0 represents normal speed. Values less than 1.0 slow down the playback,
+ * while values greater than 1.0 speed it up.
+ *
+ * **The playback rate should be within the range of 0.5 to 2.0** for most browsers, but actual
+ * limits may vary depending on the browser and video codec support.
  * @returns {void}
  */
 export function setVideoSpeed(

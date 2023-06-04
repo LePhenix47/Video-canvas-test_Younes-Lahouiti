@@ -67,23 +67,35 @@
                             class="index__span index__label--color-value">0</span>
                         <br />
                         <input class="index__input index__input--red" type="range" min="0" step="1" value="0" max="255"
-                            name="color-to-change" id="red">
+                            name="color-to-change" id="red" />
                     </label>
                     <label class="index__label" for="green">Green: <span
                             class="index__span index__label--color-value">0</span>
                         <br />
                         <input class="index__input index__input--green" type="range" min="0" step="1" value="0"
-                            max="255" name="color-to-change" id="green">
+                            max="255" name="color-to-change" id="green" />
                     </label>
                     <label class="index__label" for="blue">Blue: <span
                             class="index__span index__label--color-value">255</span>
                         <br />
                         <input class="index__input index__input--blue" type="range" min="0" step="1" value="255"
-                            max="255" name="color-to-change" id="blue">
+                            max="255" name="color-to-change" id="blue" />
+                    </label>
+                    <label class="index__label index__label--euclidian-distance" for="euclidian-distance">Euclidian
+                        distance: <span class="index__span index__label--color-value">190</span>
+                        <br />
+                        <input class="index__input index__input--euclidian-distance" type="number" min="0" step="1"
+                            value="190" max="255" name="color-to-change" id="euclidian-distance" />
+                        <span class="popup__text">The <dfn>euclidean distance</dfn> is a measure of the straight line
+                            distance between
+                            two points in a
+                            Euclidean space. In this context, it represents the difference between two colors in the RGB
+                            color space.</span>
                     </label>
                 </fieldset>
-                <div class="index__previewed-color">
-
+                <div class="index__preview-container">
+                    <h3 class="index__preview-title">Preview:</h3>
+                    <div class="index__previewed-color"></div>
                 </div>
             </form>
             <form class="index__control--replacer">
@@ -91,7 +103,7 @@
                     <legend class="index__control--legend">To color</legend>
                     <label class="index__label" for="to-color">Replaced by: <span class="index__span">#FFFF00</span>
                         <br />
-                        <input type="color" class="index__input" id="to-color" value="#FFFF00">
+                        <input type="color" class="index__input" id="to-color" value="#FFFF00" />
                     </label>
                 </fieldset>
             </form>

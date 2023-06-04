@@ -4,7 +4,7 @@ import {
   timeEnd,
 } from "../../functions/helper-functions/console.functions";
 import { floor } from "../../functions/helper-functions/math.functions";
-import { ColorType } from "../../variables/tracker.variables";
+import { ColorType, replacerColor } from "../../variables/tracker.variables";
 
 /**
  * Represents an image effect applied to a canvas.
@@ -86,13 +86,13 @@ export class WebCamEffect {
 
       const currentColor: ColorType = { red, green, blue };
 
-      const hasCondition: boolean = this.checkColorMatch(
+      const hasSmallGap: boolean = this.checkColorMatch(
         colorToReplace,
         currentColor,
-        190
+        replacerColor.threshold
       );
-      if (hasCondition) {
-        this.context.fillStyle = "yellow";
+      if (hasSmallGap) {
+        this.context.fillStyle = replacerColor.hexValue;
         this.context.fillRect(posX, posY, 2, 2);
       }
     }

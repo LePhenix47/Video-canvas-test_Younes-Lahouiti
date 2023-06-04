@@ -4,6 +4,11 @@
     outline: 2px solid grey;
 
     @include center-flex-column(25px);
+
+    @include desktop-only {
+        @include center-flex(25px)
+    }
+
     padding-block: 25px;
 
     &__container {
@@ -48,12 +53,13 @@
         position: absolute;
     }
 
+    &__control--form {
+        @include center-flex-column(35px);
+    }
+
 
     &__control--fieldset {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 35px;
+        @include center-flex-column(35px);
 
         width: fit-content;
         margin: auto;
@@ -67,13 +73,31 @@
         margin: auto;
     }
 
+    &__previewed-color {
+        --_bg-color: rgb(0, 0, 255);
+
+        background-color: var(--_bg-color);
+
+        width: 255px;
+        min-height: 25px;
+
+        border-radius: 100vmax;
+    }
+
     &__label {
         width: max-content;
+
+        &--euclidian-distance {
+            &:hover>.popup__text {
+                visibility: visible;
+            }
+        }
     }
 
     &__input {
         margin-top: 10px;
         width: 255px;
+        border-radius: 100vmax;
 
         &--red {
             @include set-input-color(rgb(255, 0, 0))
@@ -86,5 +110,35 @@
         &--blue {
             @include set-input-color(rgb(0, 0, 255))
         }
+
+
+        &--euclidian-distance {
+            padding: 2px 4px;
+
+            text-align: center;
+            position: relative;
+        }
+    }
+}
+
+
+.popup {
+
+    &__text {
+        visibility: collapse;
+        position: absolute;
+
+
+        width: 200px;
+
+        background-color: #333;
+        color: currentColor;
+
+        text-align: justify;
+
+        border-radius: 6px;
+        padding: 15px;
+
+        transition: visiblity 350ms ease-in-out;
     }
 }
