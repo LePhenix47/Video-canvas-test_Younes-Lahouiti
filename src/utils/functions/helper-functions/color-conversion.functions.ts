@@ -292,6 +292,47 @@ export function hslColorToHwb(
 }
 
 /**
+ * Converts HSV (Hue, Saturation, Value) color model to HSL (Hue, Saturation, Lightness) color model.
+ * @param {number} hue - The hue value in degrees (0-360).
+ * @param {number} saturation - The saturation value in percentage (0-100).
+ * @param {number} value - The value/brightness value in percentage (0-100).
+ * @returns {{ hue: number, saturation: number, lightness: number }} - The converted HSL color object.
+ */
+export function hsvToHsl(
+  hue: number,
+  saturation: number,
+  value: number
+): { hue: number; saturation: number; lightness: number } {
+  const normalizedSaturation: number = saturation / 100;
+  const normalizedValue: number = value / 100;
+
+  const convertedLightness: number =
+    (2 - normalizedSaturation) * (normalizedValue / 2);
+
+  const convertedSaturation: {
+    saturationAtLowLightness: number;
+    saturationAtHighLightness: number;
+  } = {
+    saturationAtLowLightness:
+      ((normalizedSaturation * normalizedValue) / (2 * convertedLightness)) *
+      100,
+    saturationAtHighLightness:
+      ((normalizedSaturation * normalizedValue) /
+        (2 - 2 * convertedLightness)) *
+      100,
+  };
+
+  return {
+    hue,
+    saturation:
+      convertedLightness <= 0.5
+        ? convertedSaturation.saturationAtLowLightness
+        : convertedSaturation.saturationAtHighLightness,
+    lightness: convertedLightness * 100,
+  };
+}
+
+/**
  * Transforms a color value from one color model to another.
  *
  * @param {any} colorValue - The color value to transform.
