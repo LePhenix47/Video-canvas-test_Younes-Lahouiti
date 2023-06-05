@@ -18,7 +18,7 @@ The "Video Color Replacer Test" project is a small application that allows you t
 
 ## 2. Demo
 
-You can see a live demo of the project at: [GitHub Pages]()
+You can see a live demo of the project at: [GitHub Pages](https://lephenix47.github.io/Video-canvas-test_Younes-Lahouiti/)
 
 ## 3. Technologies Used
 
