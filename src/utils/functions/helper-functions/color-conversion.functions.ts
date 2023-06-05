@@ -1,3 +1,4 @@
+import { round } from "./math.functions";
 import { decimalToHexadecimal, hexadecimalToDecimal } from "./number.functions";
 import { getSubtring, sliceString } from "./string.functions";
 
@@ -292,6 +293,33 @@ export function hslColorToHwb(
 }
 
 /**
+ * Converts an HWB (Hue-Whiteness-Blackness) color to HSV (Hue-Saturation-Value) color model.
+ *
+ * @param {number} hue - The hue value of the HWB color (0-360).
+ * @param {number} whiteness - The whiteness value of the HWB color (0-100).
+ * @param {number} blackness - The blackness value of the HWB color (0-100).
+ *
+ * @returns {Object} An object representing the converted HSV color with properties for hue, saturation, and value.
+ */
+export function hwbToHsv(
+  hue: number,
+  whiteness: number,
+  blackness: number
+): {
+  hue: number;
+  saturation: number;
+  value: number;
+} {
+  const value: number = 1 - blackness;
+  const saturation: number = 1 - whiteness / value;
+  return {
+    hue,
+    saturation,
+    value,
+  };
+}
+
+/**
  * Converts HSV (Hue, Saturation, Value) color model to HSL (Hue, Saturation, Lightness) color model.
  * @param {number} hue - The hue value in degrees (0-360).
  * @param {number} saturation - The saturation value in percentage (0-100).
@@ -303,31 +331,40 @@ export function hsvToHsl(
   saturation: number,
   value: number
 ): { hue: number; saturation: number; lightness: number } {
+  //We normalize the value to get a range of numbers from 0 to 1
   const normalizedSaturation: number = saturation / 100;
   const normalizedValue: number = value / 100;
 
+  //We use the formula: Lightness = (2 - Saturation) × (Value / 2)
   const convertedLightness: number =
     (2 - normalizedSaturation) * (normalizedValue / 2);
 
-  const convertedSaturation: {
-    saturationAtLowLightness: number;
-    saturationAtHighLightness: number;
-  } = {
-    saturationAtLowLightness:
-      ((normalizedSaturation * normalizedValue) / (2 * convertedLightness)) *
-      100,
-    saturationAtHighLightness:
-      ((normalizedSaturation * normalizedValue) /
-        (2 - 2 * convertedLightness)) *
-      100,
-  };
+  //Depending on the lightness level we use slightly different formulas
+  let convertedSaturation: number = 0;
+  const hasLowBrightness: boolean = convertedLightness <= 0.5;
+  if (hasLowBrightness) {
+    //We use: Saturation = (Saturation × Value) / (2 × Lightness)
+    convertedSaturation =
+      (normalizedSaturation * normalizedValue) / (2 * convertedLightness);
+  } else {
+    //We use: Saturation = (Saturation × Value) / (2 - (2 × Lightness))
+    convertedSaturation =
+      (normalizedSaturation * normalizedValue) / (2 - 2 * convertedLightness);
+  }
+
+  //Given the fact that the saturation formula has a division with the lightness
+  //We may have a division by 0 when the Lightness = 0% or 100% depending on the brightness level
+  const hasMinOrMaxBrightness: boolean =
+    convertedLightness === 0 || convertedLightness === 1;
+  if (hasMinOrMaxBrightness) {
+    convertedSaturation = 0;
+  } else {
+    convertedSaturation *= 100;
+  }
 
   return {
     hue,
-    saturation:
-      convertedLightness <= 0.5
-        ? convertedSaturation.saturationAtLowLightness
-        : convertedSaturation.saturationAtHighLightness,
+    saturation: convertedSaturation,
     lightness: convertedLightness * 100,
   };
 }
@@ -368,6 +405,12 @@ export function transformColorModel(
   const HSL_TO_HWB: boolean =
     initialColorModel.includes("hsl") && wantedColorModel.includes("hwb");
 
+  const HWB_TO_HSV: boolean =
+    initialColorModel.includes("hwb") && wantedColorModel.includes("hsv");
+
+  const HSV_TO_HSL: boolean =
+    initialColorModel.includes("hsv") && wantedColorModel.includes("hsl");
+
   //Indirect conversions
   const HSL_TO_RGB: boolean =
     initialColorModel.includes("hsl") && wantedColorModel.includes("rgb");
@@ -376,7 +419,7 @@ export function transformColorModel(
   const HEX_TO_HSL: boolean =
     initialColorModel.includes("hex") && wantedColorModel.includes("hsl");
 
-  // Direct Conversions
+  // Direct Conversions (available color conversion funcitons)
   if (HEX_TO_RGB) {
     convertedColor = hexColorToRgb(colorValue);
   } else if (RGB_TO_HSL) {
@@ -397,9 +440,21 @@ export function transformColorModel(
       colorValue.saturation,
       colorValue.lightness
     );
+  } else if (HWB_TO_HSV) {
+    convertedColor = hwbToHsv(
+      colorValue.hue,
+      colorValue.whiteness,
+      colorValue.blackness
+    );
+  } else if (HSV_TO_HSL) {
+    convertedColor = hsvToHsl(
+      colorValue.hue,
+      colorValue.saturation,
+      colorValue.value
+    );
   }
 
-  // Indirect Conversions
+  // Indirect Conversions (incomplete)
   else if (HSL_TO_RGB) {
     const hexColor: string = hslColorToHex(
       colorValue.hue,
