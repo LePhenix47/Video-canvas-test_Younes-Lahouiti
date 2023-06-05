@@ -9,7 +9,7 @@ import { getSubtring, sliceString } from "./string.functions";
  * @param {number} green - The green component of the color (0-255).
  * @param {boolean} hasToBeExact - Specifies whether the exact brightness should be calculated.
  *
- * If `true`, the formula [relative luminance formula](https://en.wikipedia.org/wiki/Relative_luminance) is used.
+ * If `true`, the [relative luminance formula](https://en.wikipedia.org/wiki/Relative_luminance) is used.
  *
  * If `false`, the average of the RGB values is used.
  *

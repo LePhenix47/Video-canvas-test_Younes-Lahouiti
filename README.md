@@ -14,6 +14,8 @@
 
 ## 1. Description
 
+The "Video Color Replacer Test" project is a small application that allows you to replace a specific color in a video, captured from your webcam, with a small square color of your choice. This project provides a simple and interactive way to experiment with color replacement techniques in real-time video footage. By selecting a target color and defining the replacement color, you can observe the immediate effects of color transformation within the video feed. It offers a fun and creative approach to exploring color manipulation in video streams.
+
 ## 2. Demo
 
 You can see a live demo of the project at: [GitHub Pages]()
@@ -30,7 +32,10 @@ You can see a live demo of the project at: [GitHub Pages]()
 
 ## 4. Features
 
-[FEATURES]
+- Real-time color replacement in video footage captured from the webcam.
+- Select a target color and define the replacement color.
+- Immediate visual feedback of color transformation within the video feed.
+- Interactive and user-friendly interface for color manipulation.
 
 ## 5. Usage
 
