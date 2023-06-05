@@ -39,15 +39,16 @@ You can see a live demo of the project at: [GitHub Pages]()
 
 ## 5. Usage
 
-To use the Paintbrush App, follow these steps:
+To use the "Video Color Replacer Test" application, follow these steps:
 
-1. Clone the repository or download the source code.
-2. Open the `index.html` file in a web browser.
-3. Use the mouse to freely draw on the canvas.
-4. Customize the brush size and color using the provided options.
-5. Use the undo button to remove the last stroke or the clear button to start a new canvas.
+1. Allow access to your webcam when prompted by the browser.
+2. Select a particular color in the video feed that you want to replace.
+3. Choose another color that you want to replace the selected color with.
+4. Observe the real-time transformation of the selected color to the replacement color in the video feed.
+5. Experiment with different color combinations and see the immediate effects.
+6. Enjoy exploring the creative possibilities of color replacement in video streams!
 
-Feel free to explore and unleash your creativity with the Paintbrush App!
+Feel free to have fun and unleash your creativity with the "Video Color Replacer Test" application!
 
 ## 6. Credits
 
