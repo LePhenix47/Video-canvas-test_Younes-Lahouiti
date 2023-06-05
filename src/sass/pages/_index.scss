@@ -93,6 +93,7 @@
 
             &:hover>.popup__text {
                 opacity: 100%;
+                visibility: visible;
             }
         }
     }
@@ -136,13 +137,14 @@
         color: currentColor;
 
         opacity: 0;
+        visibility: collapse;
 
         position: absolute;
         top: -50%;
         left: 105%;
         translate: 0% -4%;
 
-        width: 300px;
+        width: 400px;
 
         @include mobile-only {
             width: 200px;
