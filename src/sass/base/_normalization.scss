@@ -26,9 +26,9 @@
 *::selection {
     -webkit-text-stroke: transparent;
 
-    color: var(--_selection-color);
+    color: var(--selection-color);
 
-    background-color: var(--_selection-bg-color);
+    background-color: var(--selection-bg-color);
 }
 
 html {
@@ -311,12 +311,16 @@ input {
         --_color-swatch-border-width: 0px;
         --_color-swatch-border-color: transparent;
 
+        --_border-radius: 100vmax;
+
         &::-moz-color-swatch {
             display: var(--_color-swatch-display);
 
             height: var(--_color-swatch-height);
 
             border: var(--_color-swatch-border-width) solid var(--_color-swatch-border-color);
+
+            border-radius: var(--_border-radius);
         }
 
         &::-webkit-color-swatch {
@@ -325,6 +329,8 @@ input {
             height: var(--_color-swatch-height);
 
             border: var(--_color-swatch-border-width) solid var(--_color-swatch-border-color);
+
+            border-radius: var(--_border-radius);
         }
     }
 
