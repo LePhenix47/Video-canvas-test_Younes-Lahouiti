@@ -15,7 +15,7 @@ export function handleColorRangeChange(event: Event) {
 
   const inputColor: string = input.id;
 
-  setInputValueToSpan(input, input.valueAsNumber);
+  setInputValueToOutput(input, input.valueAsNumber);
 
   colorToReplace[inputColor] = input.valueAsNumber;
 
@@ -36,7 +36,7 @@ export function handleColorInput(event: Event) {
 
   const formattedValue: string = formatText(input.value, "uppercase");
 
-  setInputValueToSpan(input, formattedValue);
+  setInputValueToOutput(input, formattedValue);
 
   replacerColor.hexValue = formattedValue;
 }
@@ -47,12 +47,15 @@ export function handleDistanceNumberInput(event: Event) {
   replacerColor.threshold = input.valueAsNumber;
 }
 
-function setInputValueToSpan(input: HTMLInputElement, value: number | string) {
+function setInputValueToOutput(
+  input: HTMLInputElement,
+  value: number | string
+) {
   const label: HTMLLabelElement = getParent(input) as HTMLLabelElement;
-  const span: HTMLSpanElement = selectQuery(
-    "span:not(.popup__text)",
+  const output: HTMLOutputElement = selectQuery(
+    "output:not(.popup__text)",
     label
-  ) as HTMLSpanElement;
+  ) as HTMLOutputElement;
 
-  span.textContent = value.toString();
+  output.textContent = value.toString();
 }

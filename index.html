@@ -65,20 +65,20 @@
                 <fieldset class="index__control--fieldset">
                     <legend class="index__control--legend">From color</legend>
 
-                    <label class="index__label" for="red">Red: <span
-                            class="index__span index__label--color-value">0</span>
+                    <label class="index__label" for="red">Red: <output
+                            class="index__output index__label--color-value">0</output>
                         <br />
                         <input class="index__input index__input--red" type="range" min="0" step="1" value="0" max="255"
                             name="color-to-change" id="red" />
                     </label>
-                    <label class="index__label" for="green">Green: <span
-                            class="index__span index__label--color-value">0</span>
+                    <label class="index__label" for="green">Green: <output
+                            class="index__output index__label--color-value">0</output>
                         <br />
                         <input class="index__input index__input--green" type="range" min="0" step="1" value="0"
                             max="255" name="color-to-change" id="green" />
                     </label>
-                    <label class="index__label" for="blue">Blue: <span
-                            class="index__span index__label--color-value">255</span>
+                    <label class="index__label" for="blue">Blue: <output
+                            class="index__output index__label--color-value">255</output>
                         <br />
                         <input class="index__input index__input--blue" type="range" min="0" step="1" value="255"
                             max="255" name="color-to-change" id="blue" />
@@ -103,7 +103,8 @@
             <form class="index__control--replacer">
                 <fieldset class="index__control--fieldset">
                     <legend class="index__control--legend">To color</legend>
-                    <label class="index__label" for="to-color">Replaced by: <span class="index__span">#FFFF00</span>
+                    <label class="index__label" for="to-color">Replaced by: <output
+                            class="index__output">#FFFF00</output>
                         <br />
                         <input type="color" class="index__input" id="to-color" value="#FFFF00" />
                     </label>
