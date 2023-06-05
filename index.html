@@ -83,16 +83,23 @@
                         <input class="index__input index__input--blue" type="range" min="0" step="1" value="255"
                             max="255" name="color-to-change" id="blue" />
                     </label>
-                    <label class="index__label index__label--euclidian-distance" for="euclidian-distance">Euclidian
+                    <label class="index__label index__label--euclidian-distance" for="euclidian-distance">Euclidean
                         distance:
                         <br />
                         <input class="index__input index__input--euclidian-distance" type="number" min="0" step="1"
                             value="190" max="255" name="color-to-change" id="euclidian-distance" />
-                        <span class="popup__text">The <dfn>euclidean distance</dfn> is a measure of the straight line
-                            distance between
-                            two points in a
-                            Euclidean space. In this context, it represents the difference between two colors in the RGB
-                            color space.</span>
+                        <span class="popup__text">The <dfn>Euclidean distance</dfn> which measures the straight-line
+                            distance between two points in a Euclidean space, serves as a criterion for determining
+                            the acceptable difference between two colors in the RGB color space during the color
+                            replacement process.
+                            By adjusting the value of the Euclidean distance, you can control the sensitivity of the
+                            color replacement.
+                            A smaller value indicates a stricter match, replacing only colors that are extremely close
+                            to the selected target color,
+                            while a larger value allows for a broader range of colors to be replaced, including those
+                            that are further away from the
+                            target color.
+                        </span>
                     </label>
                 </fieldset>
                 <div class="index__preview-container">
