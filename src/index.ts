@@ -115,17 +115,29 @@ const fpsParagraph: HTMLParagraphElement = selectQuery(
   ".index__fps-count"
 ) as HTMLParagraphElement;
 
-let fps = 0;
-let lastFrameTime = 0;
+let fps: number = 0;
+let lastFrameTime: number = 0;
 
-function showFps() {
+/**
+ * Updates the FPS count and displays it on the webpage.
+ *
+ * @returns {void}
+ */
+function showFps(): void {
+  // The current timestamp.
   const now: number = performance.now();
+
+  // The time difference between the current and last frame.
   const deltaTime: number = now - lastFrameTime;
+
+  // The current FPS calculated based on the time difference.
   const currentFPS: number = Math.round(1000 / deltaTime);
 
+  // Update the FPS and lastFrameTime variables
   fps = currentFPS;
   lastFrameTime = now;
 
+  // Display the FPS count on the webpage
   fpsParagraph.textContent = `${fps} fps`;
 }
 

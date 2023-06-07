@@ -115,6 +115,10 @@
             @include set-input-color(rgb(0, 0, 255))
         }
 
+        &--color {
+            --_color-swatch-border-radius: 100vmax !important;
+        }
+
 
         &--euclidian-distance {
             padding: 2px 4px;
