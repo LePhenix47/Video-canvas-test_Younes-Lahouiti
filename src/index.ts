@@ -111,10 +111,30 @@ function startAnimationOnCanvas(event: Event) {
   animate();
 }
 
+const fpsParagraph: HTMLParagraphElement = selectQuery(
+  ".index__fps-count"
+) as HTMLParagraphElement;
+
+let fps = 0;
+let lastFrameTime = 0;
+
+function showFps() {
+  const now: number = performance.now();
+  const deltaTime: number = now - lastFrameTime;
+  const currentFPS: number = Math.round(1000 / deltaTime);
+
+  fps = currentFPS;
+  lastFrameTime = now;
+
+  fpsParagraph.textContent = `${fps} fps`;
+}
+
 /**
  * Animates the canvas.
  */
 function animate() {
+  showFps();
+
   changePixelsOnVideo();
 
   requestAnimationFrame(animate);
